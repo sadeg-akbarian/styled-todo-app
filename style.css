@@ -1,0 +1,185 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --page-background-color: rgba(128, 128, 128, 0.1);
+  --elements-background-color: rgb(239, 71, 111);
+  --blue-background-color: #118ab2;
+  --green-background-color: #06d6a0;
+  --yellow-background-color: #f5ab00;
+  --darkblue-background-color: #073b4c;
+}
+
+html {
+  font-family: monospace;
+  direction: ltr;
+  font-size: 1.9vmin;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: var(--page-background-color);
+  color: var(--page-text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  background-color: var(--elements-background-color);
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  color: white;
+  text-shadow: 0.5vmin 0.5vmin var(--blue-background-color),
+    1vmin 1vmin var(--yellow-background-color);
+}
+
+h2 {
+  margin-top: 6vmin;
+  font-weight: 900;
+}
+
+.removeTodos,
+.inputContainer {
+  margin-top: 1rem;
+}
+
+.inputTodo {
+  width: 40vmin;
+  border: 0;
+  border-radius: 1vmin;
+  background-color: white;
+  margin-right: 1vmin;
+  padding: 1vmin;
+}
+
+.addTodoButton {
+  color: white;
+  background-color: var(--blue-background-color);
+  border: 0;
+  border-radius: 1vmin;
+  box-shadow: 0.4vmin 0.4vmin var(--elements-background-color);
+}
+
+.removeTodos {
+  font-size: 2.5vmin;
+  color: white;
+  background-color: var(--blue-background-color);
+  padding-inline: 1vmin;
+  padding-block: 0.75vmin;
+  border: 0;
+  border-radius: 0.5vmin;
+  box-shadow: 0.4vmin 0.4vmin var(--elements-background-color);
+}
+
+.inputContainer {
+  display: flex;
+  position: relative;
+}
+
+.popup {
+  display: none;
+  position: absolute;
+  left: 21.5vmin;
+  top: -5.3vmin;
+  background-color: #e92929;
+  border: 0.2vmin solid #ccc;
+  padding: 1.1vmin;
+  box-shadow: 0 2vmin 4vmin rgba(0, 0, 0, 0.1);
+}
+
+.smallTriangle {
+  display: none;
+  position: absolute;
+  left: 21.6vmin;
+  top: -0.85vmin;
+  width: 0;
+  height: 0;
+  border-right: 2.2vmin solid transparent;
+  border-top: 3.3vmin solid #e92929;
+}
+.hideToDo {
+  display: none;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1vmin;
+}
+
+.radio {
+  all: unset;
+  width: 3.5vmin;
+  height: 3.5vmin;
+  border-radius: 50%;
+  outline: 0.4vmin solid black;
+  margin-right: 1vmin;
+}
+
+.radio:checked {
+  background-color: var(--blue-background-color);
+}
+
+ul {
+  padding: 0;
+  width: 60vmin;
+}
+
+input:focus {
+  outline: 0.4vmin solid var(--yellow-background-color);
+}
+
+button:focus {
+  outline: 0.4vmin solid var(--yellow-background-color);
+  box-shadow: 0.7vmin 0.7vmin var(--elements-background-color);
+}
+
+li {
+  all: unset;
+  background-color: white;
+  border-radius: 1vmin;
+  padding: 2vmin;
+  width: 100%;
+  display: block;
+  font-size: 4vmin;
+  display: flex;
+  align-items: center;
+  margin-bottom: 3vmin;
+}
+
+.li_focused {
+  outline: 0.3vmin solid var(--yellow-background-color);
+  box-shadow: 0.7vmin 0.7vmin var(--elements-background-color);
+}
+
+li > input {
+  all: unset;
+  display: inline-block;
+  margin-right: 2vmin;
+  width: 3vmin;
+  height: 3vmin;
+  border: 0.5vmin solid black;
+  border-radius: 0.5vmin;
+}
+
+li > input:focus {
+  outline: 0;
+}
+
+.checkedInput {
+  background-color: var(--green-background-color);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden='true' focusable='false' %3E%3Cpath fill='none' stroke='white' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /%3E%3C/svg%3E");
+}
+
+.toDoDone {
+  text-decoration: line-through;
+}

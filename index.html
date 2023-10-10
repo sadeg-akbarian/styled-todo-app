@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Todo App" />
+    <meta name="author" content="Sadeg Akbarian" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/normalize.css@8.0.1/normalize.css"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <title>Todo App</title>
+  </head>
+  <body>
+    <header><h1>Todo App</h1></header>
+    <main>
+      <form>
+        <div class="inputContainer">
+          <input
+            type="text"
+            class="inputTodo"
+            id="inputTodo"
+            placeholder="Type in min. 5 characters"
+            autocomplete="on"
+          />
+          <div id="customPopup" class="popup">
+            Dieser Eintrag existiert bereits!
+          </div>
+          <div class="smallTriangle" id="smallTriangle"></div>
+          <button type="button" class="addTodoButton" id="addTodoButton">
+            Add
+          </button>
+        </div>
+        <h2>Filter & Options</h2>
+        <div class="radio-container">
+          <input type="radio" class="radio" id="allButton" checked />
+          <label for="allButton">All</label>
+        </div>
+        <div class="radio-container">
+          <input type="radio" class="radio" id="openButton" />
+          <label for="openButton">Open</label>
+        </div>
+        <div class="radio-container">
+          <input type="radio" class="radio" id="doneButton" />
+          <label for="doneButton">Done</label>
+        </div>
+        <button type="button" class="removeTodos" id="removeTodos">
+          Remove done Todos</button
+        ><br />
+        <h2>Your Todos</h2>
+        <ul id="todoList"></ul>
+      </form>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
