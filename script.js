@@ -39,36 +39,28 @@ function renderState() {
       newElement.classList.add("toDoDone");
       newInput.classList.add("checkedInput");
     }
-    console.log(newInput.checked);
     const newTextNode = document.createTextNode(
       addedTodos[toDo].description + " "
     );
     newElement.appendChild(newTextNode);
-    console.log(newElement.innerText);
     newElement.id = addedTodos[toDo].id;
-    console.log(newElement.id);
     todoList.appendChild(newElement);
   }
   const chosenToDoID = JSON.parse(localStorage.getItem("geklicktes ToDo"));
-  console.log(chosenToDoID);
   if (chosenToDoID !== null) {
     const chosenToDo = document.querySelector("#" + chosenToDoID);
-    console.log(chosenToDo);
     chosenToDo.classList.add("li_focused");
   }
 
   for (const toDo in addedTodos) {
-    console.log(addedTodos[toDo]);
     if (openButton.checked) {
       if (addedTodos[toDo].done === true) {
         const currentToDo = todoList.querySelector("#" + addedTodos[toDo].id);
-        console.log(currentToDo);
         currentToDo.classList.add("hideToDo");
       }
     } else if (doneButton.checked) {
       if (addedTodos[toDo].done === false) {
         const currentToDo = todoList.querySelector("#" + addedTodos[toDo].id);
-        console.log(currentToDo);
         currentToDo.classList.add("hideToDo");
       }
     }
@@ -134,24 +126,17 @@ inputTodo.addEventListener("click", function () {
 
 function addAToDo() {
   localStorage.removeItem("geklicktes ToDo");
-  console.log(inputTodo.value);
   const trimedInput = inputTodo.value.trim();
-  console.log(trimedInput.length);
-  console.log(trimedInput);
   if (trimedInput.length >= 5) {
     let addedTodos = JSON.parse(localStorage.getItem("addedTodos"));
     if (addedTodos === null) {
       addedTodos = {};
     }
     const allDescriptions = [];
-    console.log(addedTodos);
     for (const toDo in addedTodos) {
-      console.log(addedTodos[toDo].description);
       allDescriptions.push(addedTodos[toDo].description.toLowerCase());
     }
     const isToDoIncluded = allDescriptions.includes(trimedInput.toLowerCase());
-    console.log(allDescriptions);
-    console.log(isToDoIncluded);
     if (isToDoIncluded) {
       customPopup.style.display = "inline";
       smallTriangle.style.display = "inline";
@@ -159,7 +144,6 @@ function addAToDo() {
     } else {
       const newID = Date.now().toString(36);
       addedTodos[newID] = { description: trimedInput, id: newID, done: false };
-      console.log(addedTodos);
       localStorage.setItem("addedTodos", JSON.stringify(addedTodos));
     }
   }
@@ -177,7 +161,6 @@ addTodoButton.addEventListener("click", function () {
 
 inputTodo.addEventListener("keydown", function (event) {
   localStorage.removeItem("geklicktes ToDo");
-  console.log(event.code);
   if (event.code === "Enter" || event.code === "NumpadEnter") {
     event.preventDefault();
     addAToDo();
@@ -192,45 +175,28 @@ todoList.addEventListener("click", function (event) {
   const clickedCheckbox = event.target;
   if (event.target.tagName === "LI") {
     localStorage.setItem("geklicktes ToDo", JSON.stringify(event.target.id));
-    console.log("Genauuuuu");
     const childCheckbox = event.target.querySelector("input");
-    console.log(childCheckbox.checked);
     if (childCheckbox.checked === true) {
       childCheckbox.checked = false;
     } else {
       childCheckbox.checked = true;
     }
-    console.log(childCheckbox.checked);
-    console.log(event.target.tagName);
     const currentID = event.target.id;
-    console.log(event.target.id);
     const addedTodos = JSON.parse(localStorage.getItem("addedTodos"));
-    console.log(addedTodos);
-    console.log(addedTodos[currentID]);
-    console.log(addedTodos[currentID].done);
     addedTodos[currentID].done = childCheckbox.checked;
-    console.log(addedTodos[currentID]);
     localStorage.setItem("addedTodos", JSON.stringify(addedTodos));
   } else if (
     clickedCheckbox.tagName === "INPUT" &&
     clickedCheckbox.type === "checkbox"
   ) {
-    console.log(clickedCheckbox.tagName);
     const currentID = event.target.parentElement.id;
     localStorage.setItem(
       "geklicktes ToDo",
       JSON.stringify(event.target.parentElement.id)
     );
     const checkboxDone = event.target.checked;
-    console.log(checkboxDone);
-    console.log(event.target.parentElement.id);
-    console.log(checkboxDone);
     const addedTodos = JSON.parse(localStorage.getItem("addedTodos"));
-    console.log(addedTodos);
-    console.log(addedTodos[currentID]);
-    console.log(addedTodos[currentID].done);
     addedTodos[currentID].done = checkboxDone;
-    console.log(addedTodos[currentID]);
     localStorage.setItem("addedTodos", JSON.stringify(addedTodos));
   }
   renderState();
@@ -240,19 +206,15 @@ todoList.addEventListener("click", function (event) {
 
 removeButton.addEventListener("click", function () {
   localStorage.removeItem("geklicktes ToDo");
-  console.log("aaaaaaaaaaaa");
   let addedTodos = JSON.parse(localStorage.getItem("addedTodos"));
   if (addedTodos === null) {
     addedTodos = {};
   }
-  console.log(addedTodos);
   for (toDo in addedTodos) {
     if (addedTodos[toDo].done === true) {
-      console.log(toDo);
       delete addedTodos[toDo];
     }
   }
-  console.log(addedTodos);
   localStorage.setItem("addedTodos", JSON.stringify(addedTodos));
   renderState();
 });
